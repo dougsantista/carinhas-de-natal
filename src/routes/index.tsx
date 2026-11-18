@@ -103,8 +103,8 @@ function Index() {
         <div className="relative mt-8">
           <div className="overflow-hidden rounded-2xl shadow-card">
             <div className="flex transition-transform duration-500" style={{ transform: `translateX(-${slide * 100}%)` }}
-              onTouchStart={(e) => ((e.currentTarget as any)._x = e.touches[0].clientX)}
-              onTouchEnd={(e) => { const dx = e.changedTouches[0].clientX - (e.currentTarget as any)._x; if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1); }}>
+              onTouchStart={(e) => ((e.currentTarget as any)._x = e.touches[0]!.clientX)}
+              onTouchEnd={(e) => { const dx = e.changedTouches[0]!.clientX - (e.currentTarget as any)._x; if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1); }}>
               {gallery.map(([src, alt]) => (
                 <img key={src} src={`/images/${src}.jpg`} alt={alt} className="w-full shrink-0 object-cover" />
               ))}
