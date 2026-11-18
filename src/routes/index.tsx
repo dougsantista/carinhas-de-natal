@@ -5,6 +5,9 @@ import {
   Maximize, Printer, ShieldCheck, Smile, Sparkles, Star, Tag, Users, X, Zap,
 } from "lucide-react";
 import { PRICES, brl, upsellTotal } from "@/lib/pricing";
+import { CursorTrail } from "@/components/CursorTrail";
+import etiquetasImg from "@/assets/bonus-etiquetas.jpg";
+import cartoesImg from "@/assets/bonus-cartoes.jpg";
 
 // TODO: substituir pelos links de checkout com os novos preços
 const BASIC = "https://pay.seguruspagamentos.com.br/checkout/S3H8M1";
@@ -35,35 +38,35 @@ const gallery = [
 ];
 
 const features = [
-  [Brush, "Editável no Canva", "Modelos prontos abertos direto no Canva. Funciona na versão gratuita, no celular ou no computador."],
-  [Users, "+200 personagens", "Papais e Mamães Noéis, duendes, renas, bonecos de neve, anjinhos, quebra-nozes e muito mais."],
-  [Smile, "Fofos e engraçados", "Estilos para todo mundo: desde o duendinho das crianças até o boneco de neve do amigo mais sério."],
-  [Camera, "Só colocar a foto", "Escolha o personagem, encaixe o rosto e ajuste. Em poucos minutos a figurinha está pronta."],
-  [Printer, "Imprima em casa", "Baixe em alta qualidade e imprima em impressora comum, papel A4, adesivo ou fotográfico."],
-  [Maximize, "Do tamanho que quiser", "Figurinhas pequenas para lembrancinhas ou grandes para painel, porta e parede."],
+  [Brush, "Editável no Canva", "Abra os modelos no Canva gratuito, pelo celular ou pelo computador, e edite em segundos."],
+  [Users, "+200 personagens", "Papai e Mamãe Noel, duendes, renas, bonecos de neve, anjinhos, quebra-nozes e outras figuras clássicas."],
+  [Smile, "Fofos e engraçados", "Do duendinho das crianças ao boneco de neve daquele tio sério: tem estilo para cada um."],
+  [Camera, "Só colocar a foto", "Escolha a figura, encaixe o rosto e ajuste. Pronto: sua figurinha sai em minutos."],
+  [Printer, "Imprima em casa", "Arquivos em alta resolução para impressora comum, em folha A4, adesivo ou papel fotográfico."],
+  [Maximize, "Do tamanho que quiser", "Miniaturas para lembrancinhas ou peças grandes para painel, porta e parede."],
 ] as const;
 
 const bonuses: [string | null, string, string, string][] = [
-  ["bonus1", "100 Artes de Impressão para Decoração", "Plaquinhas, toppers, bandeirolas e enfeites natalinos prontos para imprimir e decorar a ceia e a casa.", "27,00"],
-  ["bonus2", "10 Brincadeiras para Animar a Noite", "Jogos simples para crianças e adultos que garantem risadas na ceia e na confraternização.", "19,00"],
-  ["bonus3", "Bingo de Natal", "Cartelas temáticas prontas para imprimir e jogar com a família toda, do mais novo ao mais velho.", "17,00"],
-  ["bonus4", "Guia Anti-Caos de Natal", "Checklists e cronograma para organizar ceia, presentes e decoração sem estresse de última hora.", "15,00"],
-  [null, "Kit Etiquetas de Presente", "+50 tags e etiquetas natalinas personalizáveis para identificar os presentes com estilo.", "19,00"],
-  [null, "Cartões de Natal Personalizados", "Modelos de cartões e mensagens prontos para editar no Canva e enviar no WhatsApp ou imprimir.", "21,00"],
+  ["bonus1", "100 Artes de Impressão para Decoração", "Plaquinhas, toppers, bandeirolas e enfeites para deixar a mesa da ceia e a casa no clima.", "27,00"],
+  ["bonus2", "10 Brincadeiras para Animar a Noite", "Jogos fáceis para todas as idades, perfeitos para a ceia ou o amigo secreto da firma.", "19,00"],
+  ["bonus3", "Bingo de Natal", "Cartelas temáticas para imprimir e reunir avós, pais e netos na mesma rodada.", "17,00"],
+  ["bonus4", "Guia Anti-Caos de Natal", "Listas e cronograma para planejar cardápio, presentes e enfeites sem correria.", "15,00"],
+  [etiquetasImg, "Kit Etiquetas de Presente", "Mais de 50 tags editáveis para marcar cada embrulho com charme.", "19,00"],
+  [cartoesImg, "Cartões de Natal Personalizados", "Cartões com espaço para foto e mensagem, para imprimir ou mandar pelo WhatsApp.", "21,00"],
 ];
 const bonusTotal = "118,00";
 
-const core = ["+200 personagens de Natal editáveis", "Acesso pelo Canva", "Arquivos para baixar e imprimir", "Acesso imediato"];
+const core = ["Mais de 200 figuras natalinas editáveis", "Edição direto no Canva", "Arquivos prontos para impressão", "Liberação na hora, por e-mail"];
 const bonusNames = bonuses.map((b) => b[1]);
 
 const faqs = [
-  ["Como vou receber o kit?", "O produto é 100% digital. Logo após a confirmação do pagamento, você recebe o acesso no e-mail informado na compra. Nada é enviado pelos Correios."],
-  ["Consigo imprimir em casa?", "Sim. Depois de personalizar, é só baixar e imprimir em impressora comum, em papel A4, adesivo ou fotográfico. Também pode levar em uma gráfica ou papelaria."],
-  ["Preciso de máquina de corte?", "Não. Uma tesoura resolve. Se você já tem plotter de recorte, também pode usar, mas não é obrigatório."],
-  ["Quantas vezes posso imprimir?", "Quantas vezes quiser. Você pode criar figurinhas para a família toda, para a escola ou para o trabalho, e usar de novo nos próximos Natais."],
-  ["Preciso de algum programa? Tenho que pagar o Canva?", "Você só precisa do Canva, que funciona na versão gratuita, pelo aplicativo do celular ou pelo navegador do computador. Não é preciso saber editar: os modelos já vêm prontos."],
-  ["Como recebo os bônus?", "Os bônus são exclusivos do Kit Premium e chegam junto com os personagens, no mesmo acesso enviado por e-mail."],
-  ["Por quanto tempo terei acesso?", "O acesso é vitalício. Você paga uma única vez e pode usar o kit sempre que quiser."],
+  ["Como vou receber o kit?", "É um material 100% digital: assim que o pagamento é aprovado, o link chega no seu e-mail. Não há envio físico."],
+  ["Consigo imprimir em casa?", "Sim. Depois de editar, basta baixar o arquivo e usar sua impressora. Se preferir, leve a uma gráfica ou papelaria."],
+  ["Preciso de máquina de corte?", "Não. Uma tesoura dá conta. Quem tem plotter pode usar, mas é opcional."],
+  ["Quantas vezes posso imprimir?", "Sem limite. Faça para a família, a escola ou o escritório, e reaproveite nos próximos anos."],
+  ["Preciso de algum programa? Tenho que pagar o Canva?", "Não precisa pagar nada além do kit: o Canva gratuito basta, no app ou no navegador. Nenhuma experiência com edição é necessária."],
+  ["Como recebo os bônus?", "Eles fazem parte só do Kit Premium e ficam disponíveis no mesmo link que você recebe após a compra."],
+  ["Por quanto tempo terei acesso?", "Para sempre. Um único pagamento e o material é seu."],
 ];
 
 function useCountdown(seconds: number, active = true) {
@@ -116,6 +119,7 @@ function Index() {
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-background font-sans text-foreground">
+      <CursorTrail />
       {/* Top bar */}
       <div className="sticky top-0 z-40 border-b border-border bg-secondary px-4 py-2 text-secondary-foreground">
         <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-center gap-x-4 gap-y-1 text-sm font-bold">
@@ -134,7 +138,7 @@ function Index() {
         <h1 className="mx-auto mt-6 max-w-4xl font-display text-5xl uppercase leading-[0.9] md:text-8xl">
           Transforme sua família em <span className="text-primary">personagens</span> de Natal
         </h1>
-        <p className="mx-auto mt-5 max-w-xl text-lg text-muted-foreground">+200 modelos editáveis no Canva. Coloque a foto, imprima e veja todo mundo rindo na ceia.</p>
+        <p className="mx-auto mt-5 max-w-xl text-lg text-muted-foreground">Mais de 200 modelos prontos. Coloque uma foto, imprima e garanta gargalhadas na noite do dia 24.</p>
         <a href="#planos" className="mt-8 inline-flex items-center gap-2 rounded-xl bg-gold px-8 py-4 font-display text-xl uppercase text-primary-foreground shadow-glow transition hover:scale-105">
           <Gift className="h-5 w-5" /> Garantir meu kit
         </a>
@@ -156,8 +160,8 @@ function Index() {
 
       {/* Galeria */}
       <section className="mx-auto max-w-3xl px-4 pt-16 pb-6">
-        <Heading kicker={<Pill icon={Gift} tone="dark">O que você vai receber</Pill>} sub="Arraste para o lado e veja como as figurinhas ficam depois de colocar a foto.">
-          Veja alguns <span className="text-primary">personagens</span> do kit
+        <Heading kicker={<Pill icon={Gift} tone="dark">O que você vai receber</Pill>} sub="Deslize as imagens e confira o antes e depois de cada figurinha.">
+          Espie o que tem <span className="text-primary">dentro do kit</span>
         </Heading>
         <div className="relative mt-8">
           <div className="overflow-hidden rounded-2xl border-2 border-primary shadow-glow">
@@ -190,14 +194,14 @@ function Index() {
       <section className="tape py-2" />
       <section className="px-4 py-16">
         <div className="mx-auto max-w-5xl">
-          <Heading kicker={<Pill icon={Crown}>Exclusivo do Kit Premium</Pill>} sub="Escolhendo o Kit Premium, você leva tudo isso de presente para deixar o seu Natal ainda mais divertido.">
+          <Heading kicker={<Pill icon={Crown}>Exclusivo do Kit Premium</Pill>} sub="Na versão Premium, estes extras vêm de presente para animar ainda mais as festas.">
             <span className="text-primary">6 bônus</span> exclusivos inclusos
           </Heading>
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {bonuses.map(([img, t, d, price], i) => (
               <div key={t} className="relative overflow-hidden rounded-2xl border border-border bg-card shadow-card">
                 <span className="absolute right-3 top-3 z-10 rotate-6 rounded-md bg-secondary px-2 py-1 text-xs font-extrabold text-secondary-foreground">GRÁTIS</span>
-                {img ? <img src={`/images/${img}.jpg`} alt={`Bônus ${i + 1}: ${t}`} className="w-full" /> : (
+                {img ? <img src={img.includes("/") ? img : `/images/${img}.jpg`} loading="lazy" alt={`Bônus ${i + 1}: ${t}`} className="aspect-[16/9] w-full object-cover" /> : (
                   <div className="flex aspect-square items-center justify-center bg-hero"><Gift className="h-20 w-20 text-primary" /></div>
                 )}
                 <div className="p-5">
@@ -220,14 +224,14 @@ function Index() {
 
       {/* Planos */}
       <section id="planos" className="mx-auto max-w-5xl scroll-mt-14 px-4 py-16">
-        <Heading kicker={<Pill icon={Flame} tone="red">Preços de Black Friday</Pill>} sub="Pagamento único, acesso imediato e garantia de 7 dias.">
+        <Heading kicker={<Pill icon={Flame} tone="red">Preços de Black Friday</Pill>} sub="Pague uma vez, receba na hora e teste sem risco por uma semana.">
           Escolha seu <span className="text-primary">Kit de Natal</span>
         </Heading>
         <div className="mt-12 grid items-start gap-6 md:grid-cols-2">
           <div className="rounded-2xl border border-border bg-card p-7 shadow-card">
             <Pill icon={Tag} tone="dark">Essencial</Pill>
             <h3 className="mt-3 font-display text-4xl uppercase">Kit Básico</h3>
-            <p className="text-sm text-muted-foreground">Só os personagens, sem bônus.</p>
+            <p className="text-sm text-muted-foreground">As figuras natalinas, sem os extras.</p>
             <p className="mt-5 text-sm text-muted-foreground">de <s>R$ 29,90</s> por</p>
             <p className="font-display text-6xl">{brl(PRICES.basic)}</p>
             <p className="text-xs text-muted-foreground">Pagamento único</p>
@@ -244,7 +248,7 @@ function Index() {
             <span className="absolute -right-3 top-8 rotate-12 rounded-lg bg-secondary px-3 py-2 text-center font-display text-lg leading-none text-secondary-foreground">-61%<br /><span className="text-xs">OFF</span></span>
             <div className="mt-2 flex flex-wrap gap-2"><Pill icon={Crown}>Premium</Pill><Pill icon={Gift} tone="red">6 bônus</Pill></div>
             <h3 className="mt-3 font-display text-4xl uppercase">Kit Premium</h3>
-            <p className="text-sm text-muted-foreground">Todos os personagens + 6 bônus exclusivos.</p>
+            <p className="text-sm text-muted-foreground">A coleção completa somada a 6 presentes extras.</p>
             <img src="/images/completo.jpg" alt="Tudo o que vem no Kit Premium" className="mt-4 w-full rounded-xl" />
             <p className="mt-5 text-sm text-muted-foreground">de <s>R$ 97,90</s> por</p>
             <p className="font-display text-6xl text-primary">{brl(PRICES.premium)}</p>
@@ -265,7 +269,7 @@ function Index() {
         <div className="rounded-2xl border border-border bg-card p-8 text-center shadow-card">
           <ShieldCheck className="mx-auto h-20 w-20 text-primary" />
           <h2 className="mt-4 font-display text-4xl uppercase">Garantia incondicional de 7 dias</h2>
-          <p className="mt-3 text-muted-foreground">Se por qualquer motivo você não gostar do kit, é só pedir o reembolso dentro de 7 dias após a compra. Você recebe 100% do valor de volta, sem perguntas.</p>
+          <p className="mt-3 text-muted-foreground">Não curtiu? Solicite o reembolso em até uma semana e devolvemos cada centavo, sem burocracia.</p>
         </div>
       </section>
 
@@ -287,18 +291,23 @@ function Index() {
       {/* CTA final */}
       <section className="bg-hero px-4 py-20 text-center">
         <Pill icon={Clock} tone="red">Última chamada</Pill>
-        <h2 className="mx-auto mt-5 max-w-3xl font-display text-5xl uppercase leading-[0.95] md:text-7xl">Transforme todo mundo em <span className="text-primary">personagem de Natal</span></h2>
-        <p className="mx-auto mt-4 max-w-xl text-muted-foreground">+200 personagens editáveis no Canva e 6 bônus exclusivos. Escolha, coloque a foto e imprima: a surpresa que vai fazer a família inteira rir nesta ceia.</p>
-        <a href="#planos" className="mt-8 inline-flex items-center gap-2 rounded-xl bg-gold px-8 py-4 font-display text-xl uppercase text-primary-foreground shadow-glow"><Gift className="h-5 w-5" /> Quero meu kit agora</a>
+        <h2 className="mx-auto mt-5 max-w-3xl font-display text-5xl uppercase leading-[0.95] md:text-7xl">Faça deste o Natal <span className="text-primary">mais divertido</span> da família</h2>
+        <p className="mx-auto mt-4 max-w-xl text-muted-foreground">Uma coleção enorme de figuras, seis extras e edição simples. A surpresa da ceia já está a poucos cliques.</p>
+        <a href="#planos" className="mt-8 inline-flex items-center gap-2 rounded-xl bg-gold px-8 py-4 font-display text-xl uppercase text-primary-foreground shadow-glow"><Gift className="h-5 w-5" /> Garantir o meu agora</a>
         <div className="mt-6 flex flex-wrap justify-center gap-x-5 gap-y-1 text-sm text-muted-foreground">
           <span className="flex items-center gap-1"><Check className="h-4 w-4 text-success" /> Acesso imediato</span>
-          <span className="flex items-center gap-1"><Check className="h-4 w-4 text-success" /> Personalização no Canva</span>
-          <span className="flex items-center gap-1"><Check className="h-4 w-4 text-success" /> Garantia de 7 dias</span>
+          <span className="flex items-center gap-1"><Check className="h-4 w-4 text-success" /> Edição no Canva</span>
+          <span className="flex items-center gap-1"><Check className="h-4 w-4 text-success" /> Reembolso em 7 dias</span>
         </div>
       </section>
 
+      <footer className="border-t border-border px-4 py-8 text-center text-xs text-muted-foreground">
+        <p>© {new Date().getFullYear()} Carinhas de Natal. Todos os direitos reservados.</p>
+        <p className="mx-auto mt-3 max-w-2xl">Este site não faz parte do site do Facebook ou da Meta Platforms, Inc. Além disso, este site NÃO é endossado pelo Facebook de forma alguma. FACEBOOK e INSTAGRAM são marcas registradas da Meta Platforms, Inc.</p>
+      </footer>
+
       <div className="h-20 md:hidden" />
-      <a href="#planos" className="fixed inset-x-4 bottom-4 z-30 rounded-xl bg-gold py-4 text-center font-display text-lg uppercase text-primary-foreground shadow-glow md:hidden">Quero meu acesso</a>
+      <a href="#planos" className="fixed inset-x-4 bottom-4 z-30 rounded-xl bg-gold py-4 text-center font-display text-lg uppercase text-primary-foreground shadow-glow md:hidden">Ver ofertas</a>
 
       {/* Upsell pop-up */}
       {modal && (
@@ -309,14 +318,14 @@ function Index() {
             <h3 className="mt-4 text-center font-display text-4xl uppercase leading-none">Por só <span className="text-primary">+{brl(PRICES.upsellAddon)}</span> leve o Premium</h3>
             <div className="mt-3 flex items-center justify-center gap-2 text-sm"><Clock className="h-4 w-4 text-primary" /> Expira em <Timer parts={upsell.parts.slice(1)} /></div>
             <img src="/images/completo.jpg" alt="Kit Premium com todos os bônus" className="mt-4 w-full rounded-xl" />
-            <p className="mt-4 text-center text-sm text-muted-foreground">Além dos +200 personagens, você desbloqueia <strong className="text-foreground">todos os 6 bônus</strong> do Kit Premium.</p>
+            <p className="mt-4 text-center text-sm text-muted-foreground">Complete seu pedido com <strong className="text-foreground">os 6 extras do Premium</strong> por um valor simbólico.</p>
             <p className="mt-3 text-center">
               <s className="text-muted-foreground">{brl(PRICES.premium)}</s>
               <strong className="ml-2 font-display text-5xl text-primary">{brl(upsellTotal())}</strong>
             </p>
             <p className="text-center text-xs text-muted-foreground">{brl(PRICES.basic)} do Básico + {brl(PRICES.upsellAddon)} do upgrade</p>
             <ul className="mt-4 space-y-1.5 text-sm">
-              <li className="flex gap-2"><Check className="h-5 w-5 shrink-0 text-success" /> +200 personagens de Natal editáveis</li>
+              <li className="flex gap-2"><Check className="h-5 w-5 shrink-0 text-success" /> Coleção com mais de 200 figuras</li>
               {bonusNames.map((c, i) => <li key={c} className="flex gap-2"><Gift className="h-5 w-5 shrink-0 text-primary" /> Bônus {i + 1} · {c}</li>)}
             </ul>
             {upsell.left === 0 ? (
