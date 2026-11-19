@@ -17,13 +17,29 @@ const UPSELL = "https://pay.seguruspagamentos.com.br/checkout/0HG2T5";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Black Friday de Natal — Carinhas de Natal" },
-      { name: "description", content: "Black Friday: +200 personagens de Natal editáveis no Canva, bônus exclusivos e garantia de 7 dias." },
-      { property: "og:title", content: "Black Friday de Natal — Carinhas de Natal" },
-      { property: "og:description", content: "Transforme todo mundo em personagem de Natal. Oferta Black Friday por tempo limitado." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
+      { title: "Carinhas de Natal: +200 personagens editáveis no Canva | Black Friday" },
+      { name: "description", content: "Coloque o rosto da família em mais de 200 personagens natalinos, edite grátis no Canva e imprima em casa. Kit Premium com 6 bônus e garantia de 7 dias." },
+      { property: "og:title", content: "Carinhas de Natal: sua família virando personagem natalino" },
+      { property: "og:description", content: "Mais de 200 figuras editáveis no Canva para imprimir em casa. Bônus exclusivos no Kit Premium." },
+      { property: "og:url", content: "https://christmas-faces-showcase.lovable.app/" },
+      { property: "og:locale", content: "pt_BR" },
     ],
+    links: [{ rel: "canonical", href: "https://christmas-faces-showcase.lovable.app/" }],
+    scripts: [{
+      type: "application/ld+json",
+      children: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Product",
+        name: "Kit Carinhas de Natal",
+        description: "Mais de 200 personagens de Natal editáveis no Canva, prontos para imprimir.",
+        image: "https://christmas-faces-showcase.lovable.app/images/completo.jpg",
+        brand: { "@type": "Brand", name: "Carinhas de Natal" },
+        offers: [
+          { "@type": "Offer", name: "Kit Básico", price: PRICES.basic.toFixed(2), priceCurrency: "BRL", availability: "https://schema.org/InStock", url: "https://christmas-faces-showcase.lovable.app/#planos" },
+          { "@type": "Offer", name: "Kit Premium", price: PRICES.premium.toFixed(2), priceCurrency: "BRL", availability: "https://schema.org/InStock", url: "https://christmas-faces-showcase.lovable.app/#planos" },
+        ],
+      }),
+    }],
   }),
   component: Index,
 });
@@ -168,7 +184,7 @@ function Index() {
             <div className="flex transition-transform duration-500" style={{ transform: `translateX(-${slide * 100}%)` }}
               onTouchStart={(e) => ((e.currentTarget as any)._x = e.touches[0]!.clientX)}
               onTouchEnd={(e) => { const dx = e.changedTouches[0]!.clientX - (e.currentTarget as any)._x; if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1); }}>
-              {gallery.map(([src, alt]) => <img key={src} src={`/images/${src}.jpg`} alt={alt} className="w-full shrink-0 object-cover" />)}
+              {gallery.map(([src, alt]) => <img key={src} src={`/images/${src}.jpg`} alt={alt} width={896} height={1200} decoding="async" loading={src === "galeria1" ? "eager" : "lazy"} className="w-full shrink-0 object-cover" />)}
             </div>
           </div>
           <button aria-label="Anterior" onClick={() => go(-1)} className="absolute left-2 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-primary text-primary-foreground"><ChevronLeft /></button>
@@ -180,6 +196,7 @@ function Index() {
       </section>
 
       {/* Features */}
+      <h2 className="sr-only">Por que escolher as Carinhas de Natal</h2>
       <section className="mx-auto grid max-w-5xl gap-4 px-4 py-12 sm:grid-cols-2 lg:grid-cols-3">
         {features.map(([Icon, t, d]) => (
           <div key={t} className="group rounded-2xl border border-border bg-card p-6 shadow-card transition hover:border-primary">
@@ -201,7 +218,7 @@ function Index() {
             {bonuses.map(([img, t, d, price], i) => (
               <div key={t} className="relative overflow-hidden rounded-2xl border border-border bg-card shadow-card">
                 <span className="absolute right-3 top-3 z-10 rotate-6 rounded-md bg-secondary px-2 py-1 text-xs font-extrabold text-secondary-foreground">GRÁTIS</span>
-                {img ? <img src={img.includes("/") ? img : `/images/${img}.jpg`} loading="lazy" alt={`Bônus ${i + 1}: ${t}`} className="aspect-[16/9] w-full object-cover" /> : (
+                {img ? <img src={img.includes("/") ? img : `/images/${img}.jpg`} loading="lazy" decoding="async" width={1376} height={768} alt={`Bônus ${i + 1}: ${t}`} className="aspect-[16/9] w-full object-cover" /> : (
                   <div className="flex aspect-square items-center justify-center bg-hero"><Gift className="h-20 w-20 text-primary" /></div>
                 )}
                 <div className="p-5">
@@ -240,7 +257,7 @@ function Index() {
               {bonusNames.map((c) => <li key={c} className="flex gap-2 text-muted-foreground line-through"><X className="h-5 w-5 shrink-0 text-destructive" />{c}</li>)}
             </ul>
             <button onClick={() => setModal(true)} className="mt-7 block w-full rounded-xl border-2 border-primary py-4 font-display text-xl uppercase text-primary transition hover:bg-primary hover:text-primary-foreground">Quero o Kit Básico</button>
-            <p className="mt-3 flex items-center justify-center gap-1 text-xs text-muted-foreground"><Lock className="h-3 w-3" /> Compra segura</p>
+            <p className="mt-3 flex items-center justify-center gap-1 text-xs text-muted-foreground"><Lock className="h-3 w-3" /> Pagamento protegido</p>
           </div>
 
           <div className="relative rounded-2xl border-2 border-primary bg-card p-7 shadow-glow">
@@ -249,7 +266,7 @@ function Index() {
             <div className="mt-2 flex flex-wrap gap-2"><Pill icon={Crown}>Premium</Pill><Pill icon={Gift} tone="red">6 bônus</Pill></div>
             <h3 className="mt-3 font-display text-4xl uppercase">Kit Premium</h3>
             <p className="text-sm text-muted-foreground">A coleção completa somada a 6 presentes extras.</p>
-            <img src="/images/completo.jpg" alt="Tudo o que vem no Kit Premium" className="mt-4 w-full rounded-xl" />
+            <img src="/images/completo.jpg" alt="Tudo o que vem no Kit Premium" loading="lazy" decoding="async" className="mt-4 w-full rounded-xl" />
             <p className="mt-5 text-sm text-muted-foreground">de <s>R$ 97,90</s> por</p>
             <p className="font-display text-6xl text-primary">{brl(PRICES.premium)}</p>
             <p className="text-xs text-muted-foreground">Pagamento único</p>
@@ -259,7 +276,7 @@ function Index() {
               {bonusNames.map((c, i) => <li key={c} className="flex gap-2"><Gift className="h-5 w-5 shrink-0 text-primary" /><span><strong>Bônus {i + 1}</strong> · {c}</span></li>)}
             </ul>
             <a href={PREMIUM} className="mt-7 block w-full animate-pulse-soft rounded-xl bg-gold py-4 text-center font-display text-xl uppercase text-primary-foreground shadow-glow">Quero o Kit Premium</a>
-            <p className="mt-3 flex items-center justify-center gap-1 text-xs text-muted-foreground"><Lock className="h-3 w-3" /> Compra segura · Acesso imediato no e-mail</p>
+            <p className="mt-3 flex items-center justify-center gap-1 text-xs text-muted-foreground"><Lock className="h-3 w-3" /> Ambiente seguro · Entrega no seu e-mail</p>
           </div>
         </div>
       </section>
@@ -275,7 +292,7 @@ function Index() {
 
       {/* FAQ */}
       <section className="mx-auto max-w-2xl px-4 pb-16">
-        <Heading kicker={<Pill icon={Sparkles} tone="dark">Dúvidas frequentes</Pill>}>Perguntas <span className="text-primary">frequentes</span></Heading>
+        <Heading kicker={<Pill icon={Sparkles} tone="dark">Tire suas dúvidas</Pill>}>Ainda ficou <span className="text-primary">alguma pergunta?</span></Heading>
         <div className="mt-8 space-y-3">
           {faqs.map(([q, a]) => (
             <details key={q} className="group rounded-xl border border-border bg-card p-5 open:border-primary">
@@ -295,7 +312,7 @@ function Index() {
         <p className="mx-auto mt-4 max-w-xl text-muted-foreground">Uma coleção enorme de figuras, seis extras e edição simples. A surpresa da ceia já está a poucos cliques.</p>
         <a href="#planos" className="mt-8 inline-flex items-center gap-2 rounded-xl bg-gold px-8 py-4 font-display text-xl uppercase text-primary-foreground shadow-glow"><Gift className="h-5 w-5" /> Garantir o meu agora</a>
         <div className="mt-6 flex flex-wrap justify-center gap-x-5 gap-y-1 text-sm text-muted-foreground">
-          <span className="flex items-center gap-1"><Check className="h-4 w-4 text-success" /> Acesso imediato</span>
+          <span className="flex items-center gap-1"><Check className="h-4 w-4 text-success" /> Liberação instantânea</span>
           <span className="flex items-center gap-1"><Check className="h-4 w-4 text-success" /> Edição no Canva</span>
           <span className="flex items-center gap-1"><Check className="h-4 w-4 text-success" /> Reembolso em 7 dias</span>
         </div>
@@ -307,7 +324,7 @@ function Index() {
       </footer>
 
       <div className="h-20 md:hidden" />
-      <a href="#planos" className="fixed inset-x-4 bottom-4 z-30 rounded-xl bg-gold py-4 text-center font-display text-lg uppercase text-primary-foreground shadow-glow md:hidden">Ver ofertas</a>
+      <a href="#planos" aria-label="Ver planos e preços" className="fixed inset-x-4 bottom-4 z-30 rounded-xl bg-gold py-4 text-center font-display text-lg uppercase text-primary-foreground shadow-glow md:hidden">Ver ofertas</a>
 
       {/* Upsell pop-up */}
       {modal && (
@@ -317,7 +334,7 @@ function Index() {
             <div className="flex justify-center"><Pill icon={Flame} tone="red">Espere! Oferta única</Pill></div>
             <h3 className="mt-4 text-center font-display text-4xl uppercase leading-none">Por só <span className="text-primary">+{brl(PRICES.upsellAddon)}</span> leve o Premium</h3>
             <div className="mt-3 flex items-center justify-center gap-2 text-sm"><Clock className="h-4 w-4 text-primary" /> Expira em <Timer parts={upsell.parts.slice(1)} /></div>
-            <img src="/images/completo.jpg" alt="Kit Premium com todos os bônus" className="mt-4 w-full rounded-xl" />
+            <img src="/images/completo.jpg" alt="Kit Premium com todos os bônus" decoding="async" className="mt-4 w-full rounded-xl" />
             <p className="mt-4 text-center text-sm text-muted-foreground">Complete seu pedido com <strong className="text-foreground">os 6 extras do Premium</strong> por um valor simbólico.</p>
             <p className="mt-3 text-center">
               <s className="text-muted-foreground">{brl(PRICES.premium)}</s>
