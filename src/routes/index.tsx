@@ -5,6 +5,7 @@ import {
   Maximize, Printer, ShieldCheck, Smile, Sparkles, Star, Tag, Users, X, Zap,
 } from "lucide-react";
 import { PRICES, brl, upsellTotal } from "@/lib/pricing";
+import { track, captureAttribution, goToCheckout } from "@/lib/meta-pixel";
 import { CursorTrail } from "@/components/CursorTrail";
 import etiquetasImg from "@/assets/bonus-etiquetas.jpg";
 import cartoesImg from "@/assets/bonus-cartoes.jpg";
@@ -87,6 +88,10 @@ const faqs = [
 
 function useCountdown(seconds: number, active = true) {
   const [left, setLeft] = useState(seconds);
+  useEffect(() => {
+    captureAttribution();
+    track("ViewContent", { content_name: "Carinhas de Natal", content_type: "product", value: PRICES.basic, currency: "BRL" });
+  }, []);
   useEffect(() => {
     if (!active) return;
     setLeft(seconds);
@@ -256,7 +261,7 @@ function Index() {
               {core.map((c) => <li key={c} className="flex gap-2"><Check className="h-5 w-5 shrink-0 text-success" />{c}</li>)}
               {bonusNames.map((c) => <li key={c} className="flex gap-2 text-muted-foreground line-through"><X className="h-5 w-5 shrink-0 text-destructive" />{c}</li>)}
             </ul>
-            <button onClick={() => setModal(true)} className="mt-7 block w-full rounded-xl border-2 border-primary py-4 font-display text-xl uppercase text-primary transition hover:bg-primary hover:text-primary-foreground">Quero o Kit Básico</button>
+            <button onClick={() => { setModal(true); track("AddToCart", { value: PRICES.basic, currency: "BRL", content_name: "Kit Básico" }); }} className="mt-7 block w-full rounded-xl border-2 border-primary py-4 font-display text-xl uppercase text-primary transition hover:bg-primary hover:text-primary-foreground">Quero o Kit Básico</button>
             <p className="mt-3 flex items-center justify-center gap-1 text-xs text-muted-foreground"><Lock className="h-3 w-3" /> Pagamento protegido</p>
           </div>
 
@@ -275,7 +280,7 @@ function Index() {
               {core.map((c) => <li key={c} className="flex gap-2"><Check className="h-5 w-5 shrink-0 text-success" />{c}</li>)}
               {bonusNames.map((c, i) => <li key={c} className="flex gap-2"><Gift className="h-5 w-5 shrink-0 text-primary" /><span><strong>Bônus {i + 1}</strong> · {c}</span></li>)}
             </ul>
-            <a href={PREMIUM} className="mt-7 block w-full animate-pulse-soft rounded-xl bg-gold py-4 text-center font-display text-xl uppercase text-primary-foreground shadow-glow">Quero o Kit Premium</a>
+            <a href={PREMIUM} onClick={(e) => { e.preventDefault(); goToCheckout(PREMIUM, PRICES.premium, "Kit Premium"); }} className="mt-7 block w-full animate-pulse-soft rounded-xl bg-gold py-4 text-center font-display text-xl uppercase text-primary-foreground shadow-glow">Quero o Kit Premium</a>
             <p className="mt-3 flex items-center justify-center gap-1 text-xs text-muted-foreground"><Lock className="h-3 w-3" /> Ambiente seguro · Entrega no seu e-mail</p>
           </div>
         </div>
@@ -348,9 +353,9 @@ function Index() {
             {upsell.left === 0 ? (
               <p className="mt-5 rounded-xl bg-muted p-4 text-center text-sm">O tempo acabou e esta oferta não está mais disponível.</p>
             ) : (
-              <a href={UPSELL} className="mt-5 block animate-pulse-soft rounded-xl bg-gold py-4 text-center font-display text-xl uppercase text-primary-foreground">Sim! Quero por {brl(upsellTotal())}</a>
+              <a href={UPSELL} onClick={(e) => { e.preventDefault(); goToCheckout(UPSELL, upsellTotal(), "Kit Básico + Bônus"); }} className="mt-5 block animate-pulse-soft rounded-xl bg-gold py-4 text-center font-display text-xl uppercase text-primary-foreground">Sim! Quero por {brl(upsellTotal())}</a>
             )}
-            <a href={BASIC} className="mt-3 block text-center text-sm text-muted-foreground underline">Não, obrigado. Quero só o Kit Básico por {brl(PRICES.basic)}</a>
+            <a href={BASIC} onClick={(e) => { e.preventDefault(); goToCheckout(BASIC, PRICES.basic, "Kit Básico"); }} className="mt-3 block text-center text-sm text-muted-foreground underline">Não, obrigado. Quero só o Kit Básico por {brl(PRICES.basic)}</a>
           </div>
         </div>
       )}
